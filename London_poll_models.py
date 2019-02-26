@@ -102,14 +102,14 @@ def poll_models (model_name, X, y, pickle_folder, site_name, pollutant):
         parameters = {'n_neighbors': num_neigh}
         my_model = GridSearchCV(regr_model(), param_grid=parameters, cv=5)
     y_train = y_train.ravel()
-    my_model.fit(X_train, y_train)
+    my_model.fit(X_train_norm, y_train_norm)
     print(my_model.best_estimator_)
-    y_pred = my_model.predict(X_test)
+    y_pred = my_model.predict(X_test_norm)
 
     model_filename = pickle_folder + pollutant +'_' + site_name + '_'  + model_name + '_' + str(num_features) + 'feat.p'
     pickle.dump(my_model, open(model_filename, 'wb'))
 
-    return y_test, y_pred, index_test, index_train, my_model
+    return y_test_norm, y_pred, index_test, index_train, my_model
 
 
 def eval_metrics_diffsites (files_folders1, pollutant, site_names, num_feat):
