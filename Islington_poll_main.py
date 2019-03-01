@@ -114,7 +114,7 @@ def visualization_diffpoll (files_folders, pollutant_names, days_of_week, site):
         print('the mean values of', name, 'for each weekday of the year in Islington are', mean_values[name])
 
     '''plotting histograms for all pollutants'''
-    poll_hist_fiffpoll = histog_diffpoll (final_values, site, pollutant_names, img_folder)
+    poll_hist_diffpoll = histog_diffpoll (final_values, site, pollutant_names, img_folder)
 
     '''plotting pollutant moving averaged values for all pollutants'''
     poll_plot = plot_poll(img_folder, final_dates, mov_avg_values,  pollutant_names, site)
@@ -143,7 +143,7 @@ def model_results_diffpoll (files_folders2, pollutant_names, site, num_of_featur
 
     '''getting results for each pollutant, model and number of features'''
     for name in pollutant_names:
-        r2score_max = 0
+        r2score_max = -2
         for num_feat in range(1, num_of_features + 1):
             X, y = model_dataset(poll_values[name], num_feat)
             for model_name in model_names:
@@ -194,12 +194,12 @@ def main_diffpoll(data_folder, model_folder, site, num_features):
     files_and_folders_diffpoll['values_filename'] = values_filename_diffpoll
     files_and_folders_diffpoll['dates_filename'] = dates_filename_diffpoll
 
-    preprocess_diffpoll(files_and_folders_diffpoll, pollutant_names, site)
-    visualization_diffpoll(files_and_folders_diffpoll, pollutant_names, weekdays, site)
+    #preprocess_diffpoll(files_and_folders_diffpoll, pollutant_names, site)
+    #visualization_diffpoll(files_and_folders_diffpoll, pollutant_names, weekdays, site)
     model_results_diffpoll(files_and_folders_diffpoll, pollutant_names, site, num_features)
-    r2score, mse = eval_metrics_diffpoll(files_and_folders_diffpoll, site, pollutant_names, num_features)
+    #r2score, mse = eval_metrics_diffpoll(files_and_folders_diffpoll, site, pollutant_names, num_features)
 
-    print(mse, r2score)
+    #print(mse, r2score)
 
 
 main_diffpoll(data_folder = '/Users/marialiatsikou/Documents/coding practice datasets/LONDON AIR/',
