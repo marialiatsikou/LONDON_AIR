@@ -10,7 +10,6 @@ import csv
 
 def read_data (filename):
     '''Returns a dataframe for each site/ pollutant'''
-    
     return pd.read_csv(filename)
 
 
@@ -52,7 +51,6 @@ def values_per_hour(dtime, values):
         max_datetime = min_datetime + timedelta(hours=1)
     datetime_new = np.asarray(datetime_new)
     values_new = np.asarray(values_new)
-    
     return datetime_new, values_new
 
 
@@ -201,10 +199,10 @@ def histog_diffpoll (values, site, pollutants, imgfolder):
     for name in pollutants:
         plt.subplot(2, int(len(pollutants)/2), position)
         plt.hist(values[name],bins='auto', range = (np.nanmin(values[name]), np.nanmax(values[name])))
-        plt.xlabel(name)
-        plt.ylabel('frequency')
-        #plt.xticks(np.arange(0,250,50),size=4)
-        #plt.yticks(size=4)
+        plt.xlabel(name, fontsize=6)
+        plt.ylabel('frequency', fontsize=6)
+        plt.xticks(size=5)
+        plt.yticks(size=5)
         position += 1
     plt.savefig(imgfolder + site + '_diff_poll_histogram.png')
     #plt.show()
@@ -218,14 +216,14 @@ def plot_poll (imgfolder, dtime, mov_av_values, pollut_names, site):
 
     plt.figure()
     for name in pollut_names:
-        plt.plot(dtime, mov_av_values[name], label = 'moving averaged ' + name + ' values', linewidth=0.5)
+        plt.plot(dtime, mov_av_values[name], label = 'moving averaged ' + name + ' values', linewidth=0.8)
     plt.grid()
     plt.xlabel('time')
     plt.ylabel('pollution values (ug/m3)')
     plt.legend()
     plt.title ('Pollution values in 2018 in ' +site)
-    plt.savefig(imgfolder + site + 'poll_plot.png')
-    #plt.show()
+    plt.savefig(imgfolder + site + '_poll_plot.png')
+    plt.show()
 
 
 def pears_corr_diffsites(values, sites, pollutant, resultsfolder, imgfolder):
@@ -262,9 +260,9 @@ def pears_corr_diffsites(values, sites, pollutant, resultsfolder, imgfolder):
                             yticklabels=sites,
                             vmin=0, vmax=1, cbar_kws={"shrink": 1})
 
-    corr_hmap.set_title('Heatmap of Pearson correlation between '+ pollutant+ ' values for the sites',fontsize = 14)
-    corr_hmap.set_yticklabels(corr_hmap.get_yticklabels(), rotation = 45, fontsize = 8)
-    corr_hmap.set_xticklabels(corr_hmap.get_xticklabels(), rotation = 45, fontsize = 8)
+    corr_hmap.set_title('Heatmap of Pearson correlation between '+ pollutant+ ' values for all sites',fontsize = 14)
+    corr_hmap.set_yticklabels(corr_hmap.get_yticklabels(), rotation = 37, fontsize = 8)
+    corr_hmap.set_xticklabels(corr_hmap.get_xticklabels(), rotation = 37, fontsize = 8)
     sns.set(font_scale=2)
 
     figure = corr_hmap.get_figure()
@@ -303,8 +301,8 @@ def pears_corr_diffpoll (values, site, pollutants,  resultsfolder, imgfolder):
                             vmin=0, vmax=1, cbar_kws={"shrink": 1})
 
     corr_hmap.set_title('Heatmap of Pearson correlation between pollutant values for ' + site,fontsize = 14)
-    corr_hmap.set_yticklabels(corr_hmap.get_yticklabels(), fontsize = 8)
-    corr_hmap.set_xticklabels(corr_hmap.get_xticklabels(), fontsize = 8)
+    corr_hmap.set_yticklabels(corr_hmap.get_yticklabels(), fontsize = 7)
+    corr_hmap.set_xticklabels(corr_hmap.get_xticklabels(), fontsize = 7)
     sns.set(font_scale=2)
 
     figure = corr_hmap.get_figure()
@@ -353,5 +351,5 @@ def barplot_diffpoll(y_data, error_data, days_of_week, pollutant, sitename, imgf
     plt.grid()
     plt.title('Bar plot and error bar by day of week for ' + pollutant + ' values in '+sitename+' in 2018', fontsize=12)
     plt.savefig(imgfolder +sitename+ pollutant+ '_bar.png')
-    #plt.show()
+    plt.show()
 
