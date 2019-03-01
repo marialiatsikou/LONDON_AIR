@@ -1,1 +1,0 @@
-the best model for predicting NO2 in Kensington is: lasso, the corresponding number of features is: 13  and r2 score is: 0.535479337085
