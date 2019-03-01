@@ -36,9 +36,9 @@ def traintestSplit (X,y,pct):
     '''Returns train and test set of a dataset and the corresponding indices
     Parameters:
     X: a rank 2 array, y: vector of floats, pct: float number
-    Outputs: Xtrain, Xtest: rank 2 arrays of floats, ytrain, ytest: vectors of floats, 
-    index_train, index_test: vectors o integers'''
-    
+    Outputs: Xtrain, Xtest: rank 2 arrays of floats, ytrain, ytest: vectors of floats, index_train, index_test: vectors of
+      integers'''
+
     index = np.arange(X.shape[0])
     thresh = (1-pct)*len(X)
     Xtrain = X[0:int(thresh),:]
@@ -52,7 +52,7 @@ def traintestSplit (X,y,pct):
 
 
 def norm_attrib(Xtrain, Xtest, ytrain, ytest):
-    '''Returns normalized features and targets with zero mean and unit variance
+    '''Returns normalized features with zero mean and unit variance
     Parameters:
     Xtrain, Xtest: rank 2 arrays of floats, ytrain, ytest: vectors of floats
     Output: X_train_std, X_test_std: rank 2 arrays of floats, y_train_std, y_test_std: vectors of floats'''
@@ -71,10 +71,10 @@ def norm_attrib(Xtrain, Xtest, ytrain, ytest):
 
 def poll_models (model_name, X, y, pickle_folder, site_name, pollutant):
     '''Returns a Regression prediction model, actual and ﻿predicted values, indices and the model
-    and saves the model in a pickle file
+     and saves the model in a pickle file
     Parameters:
     model_name: a string (defining which model to apply for regression), X: rank 2 array of the features' values,
-    Y: vector of the target values, pickle_folder: a directory path (string), site_name, pollutant: strings
+    Y: vector of the target values, pickle_folder: a directory path (string), site_name, pollutant: string
     Outputs: a pickle file containing the model, 2 vectors of predicted and actual values (floats),
     2 vectors of indices (integers), the model'''
 
