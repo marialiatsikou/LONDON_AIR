@@ -52,7 +52,7 @@ def traintestSplit (X,y,pct):
 
 
 def norm_attrib(Xtrain, Xtest, ytrain, ytest):
-    '''Returns normalized features with zero mean and unit variance
+    '''Returns normalized features and targets with zero mean and unit variance
     Parameters:
     Xtrain, Xtest: rank 2 arrays of floats, ytrain, ytest: vectors of floats
     Output: X_train_std, X_test_std: rank 2 arrays of floats, y_train_std, y_test_std: vectors of floats'''
