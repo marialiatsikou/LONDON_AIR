@@ -33,11 +33,12 @@ def model_dataset (tseries, num_features):
 
 
 def traintestSplit (X,y,pct):
-    '''Returns train and test set of a dataset
+    '''Returns train and test set of a dataset and the corresponding indices
     Parameters:
     X: a rank 2 array, y: vector of floats, pct: float number
-    Output: Xtrain, Xtest: rank 2 arrays of floats, ytrain, ytest: vectors of floats '''
-
+    Outputs: Xtrain, Xtest: rank 2 arrays of floats, ytrain, ytest: vectors of floats, 
+    index_train, index_test: vectors o integers'''
+    
     index = np.arange(X.shape[0])
     thresh = (1-pct)*len(X)
     Xtrain = X[0:int(thresh),:]
