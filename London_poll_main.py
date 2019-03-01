@@ -52,7 +52,7 @@ def preprocess (files_folders, site_names, pollutant):
     '''converting dates to datetime object'''
     dates = dates_to_dtime(temp_dates)
 
-    '''getting hourly data for  each site (every hour starting from 1/1/18 00:00)
+    '''getting hourly data for each site (every hour starting from 1/1/18 00:00)
     hourly_values is a dictionary with key:site name and value: hourly pollutant values'''
     hourly_values = dict()
     for name in site_names:
@@ -140,7 +140,7 @@ def model_results (files_folders1, site_names, pollutant, num_of_features):
 
     '''getting results for each site, model and number of features'''
     for name in site_names:
-        r2score_max = 0
+        r2score_max = -2
         for num_feat in range(1,num_of_features+1):
             X, y = model_dataset(poll_values[name], num_feat)
             for model_name in model_names:
@@ -175,7 +175,7 @@ def model_results (files_folders1, site_names, pollutant, num_of_features):
 def main_diffsites (data_folder, model_folder, pollutant, num_features):
 
     pickle_folder, img_folder, results_folder = create_and_get_folder(model_folder)
-    site_names = ['Bexley', 'Brent', 'Camden', 'City_of_London', 'Croydon', 'Ealing', 'Greenwich', 'Islington',
+    site_names = ['Bexley', 'Brent', 'Camden', 'City', 'Croydon', 'Ealing', 'Greenwich', 'Islington',
                   'Kensington', 'Westminster']
     weekdays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
 
@@ -183,17 +183,17 @@ def main_diffsites (data_folder, model_folder, pollutant, num_features):
     dates_filename_diffsites = pickle_folder + pollutant + '_' + '_diff_sites_final_dates.p'
 
     files_and_folders_diffsites = {}
-    files_and_folders_diffsites['data folder'] = data_folder
+    files_and_folders_diffsites['data_folder'] = data_folder
     files_and_folders_diffsites['pickle_folder'] = pickle_folder
     files_and_folders_diffsites['img_folder'] = img_folder
     files_and_folders_diffsites['results_folder'] = results_folder
     files_and_folders_diffsites['values_filename'] = values_filename_diffsites
     files_and_folders_diffsites['dates_filename'] = dates_filename_diffsites
 
-    preprocess(files_and_folders_diffsites, site_names, pollutant)
+    #preprocess(files_and_folders_diffsites, site_names, pollutant)
     visualization(files_and_folders_diffsites, site_names, weekdays, pollutant)
-    model_results(files_and_folders_diffsites, site_names, pollutant, num_features)
-    r2score, mse = eval_metrics_diffsites(files_and_folders_diffsites, pollutant, site_names, num_features)
+    #model_results(files_and_folders_diffsites, site_names, pollutant, num_features)
+    #r2score, mse = eval_metrics_diffsites(files_and_folders_diffsites, pollutant, site_names, num_features)
     #print(mse, r2score)
 
 
