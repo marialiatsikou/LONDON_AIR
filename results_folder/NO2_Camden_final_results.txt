@@ -1,0 +1,1 @@
+the best model for predicting NO2 in Camden is: lasso, the corresponding number of features is: 16  and r2 score is: 0.524163271985

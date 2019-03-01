@@ -1,0 +1,1 @@
+the best model for predicting NO2 in Croydon is: svm, the corresponding number of features is: 14  and r2 score is: 0.557772725268

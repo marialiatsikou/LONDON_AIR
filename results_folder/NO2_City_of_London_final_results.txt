@@ -1,0 +1,1 @@
+the best model for predicting NO2 in City_of_London is: lasso, the corresponding number of features is: 9  and r2 score is: 0.447060964321
