@@ -70,7 +70,8 @@ def norm_attrib(Xtrain, Xtest, ytrain, ytest):
 
 
 def poll_models (model_name, X, y, pickle_folder, site_name, pollutant):
-    '''Returns a Regression prediction model, predicted and actual values, indices and saves the model in a pickle file
+    '''Returns a Regression prediction model, actual and ﻿predicted values, indices and the model
+    and saves the model in a pickle file
     Parameters:
     model_name: a string (defining which model to apply for regression), X: rank 2 array of the features' values,
     Y: vector of the target values, pickle_folder: a directory path (string), site_name, pollutant: strings
