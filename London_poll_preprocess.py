@@ -10,6 +10,7 @@ import csv
 
 def read_data (filename):
     '''Returns a dataframe for each site/ pollutant'''
+    
     return pd.read_csv(filename)
 
 
@@ -51,6 +52,7 @@ def values_per_hour(dtime, values):
         max_datetime = min_datetime + timedelta(hours=1)
     datetime_new = np.asarray(datetime_new)
     values_new = np.asarray(values_new)
+    
     return datetime_new, values_new
 
 
@@ -330,7 +332,7 @@ def barplot_diffsites(y_data, error_data, days_of_week, sitename, pollutant, img
     plt.grid()
     plt.title('Bar plot and error bar by day of week for ' + pollutant + ' values in '+sitename+' in 2018', fontsize=12)
     plt.savefig(imgfolder +sitename+ pollutant+ '_bar.png')
-    plt.show()
+    #plt.show()
 
 
 def barplot_diffpoll(y_data, error_data, days_of_week, pollutant, sitename, imgfolder):
@@ -350,8 +352,6 @@ def barplot_diffpoll(y_data, error_data, days_of_week, pollutant, sitename, imgf
     plt.yticks(size=8)
     plt.grid()
     plt.title('Bar plot and error bar by day of week for ' + pollutant + ' values in '+sitename+' in 2018', fontsize=12)
-
     plt.savefig(imgfolder +sitename+ pollutant+ '_bar.png')
-
-    plt.show()
+    #plt.show()
 
