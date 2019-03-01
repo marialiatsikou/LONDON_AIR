@@ -101,7 +101,7 @@ def poll_models (model_name, X, y, pickle_folder, site_name, pollutant):
         num_neigh = [2, 5, 10, 20, 50]
         parameters = {'n_neighbors': num_neigh}
         my_model = GridSearchCV(regr_model(), param_grid=parameters, cv=5)
-    y_train = y_train.ravel()
+    y_train_norm = y_train_norm.ravel()
     my_model.fit(X_train_norm, y_train_norm)
     print(my_model.best_estimator_)
     y_pred = my_model.predict(X_test_norm)
