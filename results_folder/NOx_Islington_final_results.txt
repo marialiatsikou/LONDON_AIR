@@ -1,0 +1,1 @@
+the best model for predicting NOx in Islington is: lasso, the corresponding number of features is: 13  and r2 score is: 0.449077250168
