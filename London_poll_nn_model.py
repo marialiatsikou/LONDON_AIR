@@ -1,10 +1,3 @@
-#!/usr/bin/env python2
-# -*- coding: utf-8 -*-
-"""
-Created on Mon Feb 25 20:38:43 2019
-
-@author: marialiatsikou
-"""
 import numpy as np
 import pandas as pd
 from sklearn import metrics
@@ -58,7 +51,6 @@ def traintestSplit (X, y, pct1, pct2):
     ytest= y[int(thresh2):]
     index_test = index[int(thresh2):]
     return Xtrain, Xdev, Xtest, ytrain, ydev, ytest, index_train, index_dev, index_test
-
 
 
 def norm_attrib(Xtrain, Xdev, Xtest, ytrain, ydev, ytest):
