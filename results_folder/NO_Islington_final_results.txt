@@ -1,0 +1,1 @@
+the best model for predicting NO in Islington is: lasso, the corresponding number of features is: 8  and r2 score is: 0.390870316199
