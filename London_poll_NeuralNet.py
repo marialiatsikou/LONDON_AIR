@@ -1,11 +1,3 @@
-#!/usr/bin/env python2
-# -*- coding: utf-8 -*-
-"""
-Created on Fri Mar  1 14:43:29 2019
-
-@author: marialiatsikou
-"""
-
 import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
@@ -42,7 +34,7 @@ def model_results (files_folders1, site_names, pollutant, num_of_features):
     saves in a pickle file the best model for each site and the final conclusions 
     in a txt file
     Parameters:
-    files_folders: a dictionary of file and folder names as keys and their 
+    files_folders1: a dictionary of file and folder names as keys and their 
     directories as values, site_names: a list of names (strings), 
     pollutant: string, num_of_features: number of features of the datasets'''
 
