@@ -1,0 +1,1 @@
+the best model for predicting PM10 in Islington is: svm, the corresponding number of features is: 14  and r2 score is: 0.546214370982
