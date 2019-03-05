@@ -34,7 +34,7 @@ def model_results (files_folders1, site_names, pollutant, num_of_features):
     saves in a pickle file the best model for each site and the final conclusions 
     in a txt file
     Parameters:
-    files_folders1: a dictionary of file and folder names as keys and their 
+    files_folders: a dictionary of file and folder names as keys and their 
     directories as values, site_names: a list of names (strings), 
     pollutant: string, num_of_features: number of features of the datasets'''
 
@@ -103,7 +103,7 @@ def main_diffsites (data_folder, model_folder, pollutant, num_features):
     r2score, mse = eval_metrics_diffsites(files_and_folders_diffsites, pollutant, site_names, num_features)
     print(mse, r2score)
 
-
+    
 main_diffsites( data_folder = 
                '/Users/marialiatsikou/Documents/coding practice datasets/LONDON AIR/',
       model_folder = '/Users/marialiatsikou/Documents/Code/practice/Londonair/',  
