@@ -55,6 +55,7 @@ def traintestSplit (X, y, pct1, pct2):
     return Xtrain, Xdev, Xtest, ytrain, ydev, ytest, index_train, index_dev, index_test
 
 
+
 def norm_attrib(Xtrain, Xdev, Xtest, ytrain, ydev, ytest):
     '''Returns normalized features and targets with zero mean and unit variance
     Parameters:
@@ -78,7 +79,7 @@ def norm_attrib(Xtrain, Xdev, Xtest, ytrain, ydev, ytest):
     return X_train_std, X_dev_std, X_test_std, y_train_std, y_dev_std, y_test_std
 
 
-def nn_model(pickle_folder, pollutant, sitename, X, y, a, neurons, mini_batch, num_epochs):
+def nn_model(pickle_folder, pollutant, site_name, X, y, a, neurons, mini_batch, num_epochs):
     '''Returns a Regression Neural Network, actual and predicted values, indices and saves the model in a pickle file
     Parameters:
     pickle_folder: a directory path (string), pollutant, sitename: strings
@@ -92,10 +93,8 @@ def nn_model(pickle_folder, pollutant, sitename, X, y, a, neurons, mini_batch, n
 
     
     num_features = X.shape[1]
-    X_train, X_dev, X_test, y_train, y_dev, y_test, index_train, 
-        index_dev, index_test = traintestSplit(X, y, 0.7, 0.15)
-    X_train_norm, X_dev_norm, X_test_norm, y_train_norm, y_dev_norm, y_test_norm =
-        norm_attrib (X_train, X_dev, X_test, y_train, y_dev, y_test)
+    X_train, X_dev, X_test, y_train, y_dev, y_test, index_train, index_dev, index_test = traintestSplit(X, y, 0.7, 0.15)
+    X_train_norm, X_dev_norm, X_test_norm, y_train_norm, y_dev_norm, y_test_norm = norm_attrib (X_train, X_dev, X_test, y_train, y_dev, y_test)
     print('the shapes of X_train, X_dev, X_test are:', 
           X_train.shape, X_dev.shape, X_test.shape)
     print('the shapes of y_train, y_dev, y_test are:', 
@@ -149,8 +148,6 @@ def nn_model(pickle_folder, pollutant, sitename, X, y, a, neurons, mini_batch, n
 
     y_pred = my_model.predict(X_test_norm)
     
-    model_filename = pickle_folder + pollutant +'_' + site_name + '_'  + model_name + '_' + str(num_features) + 'feat.p'
-    pickle.dump(my_model, open(model_filename, 'wb'))
     
     print('counter is:', counter)
     print('The best model has %s learning rate, %s batches and %s neurons'
