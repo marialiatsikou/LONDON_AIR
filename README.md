@@ -4,6 +4,7 @@ This project aims at predicting the values of air pollution in various sites wit
 The analysis comprises 2 approaches:
 
 ∙ predicting the values of NO2 in 10 sites across London
+
 ∙ predicting the values of NO2, NOx, NO, PM10 in Islington.
 
 The steps in both approaches are the following:
