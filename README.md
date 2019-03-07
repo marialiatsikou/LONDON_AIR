@@ -2,6 +2,7 @@
 
 This project aims at predicting the values of air pollution in various sites within Greater London. More specifically, the targets are the concentrations of various pollutants in different locations for the year 2018. The datasets are publicly  available from Londonair (https://www.londonair.org.uk/). The analysis is based on machine learning algorithms (SVMs, Random Forests, Lasso Regression, k-nearest neighbours and Feedforward Neural Network), leveraging historical data.
 The analysis comprises 2 approaches:
+
 ∙ predicting the values of NO2 in 10 sites across London
 ∙ predicting the values of NO2, NOx, NO, PM10 in Islington.
 
