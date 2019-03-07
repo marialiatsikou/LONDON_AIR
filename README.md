@@ -7,7 +7,9 @@ The analysis comprises 2 approaches:
 
 ∙ predicting the values of NO2, NOx, NO, PM10 in Islington.
 
+
 The steps in both approaches are the following:
+
 1.	data preprocessing: using an averaging period of 6 hours for the values and interpolating the missing values
 2.	data visualization:  plot of the moving averaged timeseries for all pollutants in Islington, histograms for all sites and pollutants, Pearson correlation matrix in both cases and the corresponding heatmap, bar plots and error bars of the mean values for every day of the week
 3.	Construction of the dataset: The prediction models are using historical air pollution data as features. The number of features of each instance is the number of lagged values used to predict the target value, with lag = 6 hours, and is a hyperparameter.
