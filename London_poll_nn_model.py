@@ -93,7 +93,7 @@ def nn_model(pickle_folder, pollutant, site_name, X, y, a, neurons, mini_batch, 
 
     
     num_features = X.shape[1]
-    X_train, X_dev, X_test, y_train, y_dev, y_test, index_train, index_dev, index_test = traintestSplit(X, y, 0.7, 0.15)
+    X_train, X_dev, X_test, y_train, y_dev, y_test, index_train, index_dev, index_test = traintestSplit(X, y, 0.7, 0.1)
     X_train_norm, X_dev_norm, X_test_norm, y_train_norm, y_dev_norm, y_test_norm = norm_attrib (X_train, X_dev, X_test, y_train, y_dev, y_test)
     print('the shapes of X_train, X_dev, X_test are:', 
           X_train.shape, X_dev.shape, X_test.shape)
