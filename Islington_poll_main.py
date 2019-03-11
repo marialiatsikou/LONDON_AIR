@@ -194,13 +194,12 @@ def main_diffpoll(data_folder, model_folder, site, num_features):
     files_and_folders_diffpoll['values_filename'] = values_filename_diffpoll
     files_and_folders_diffpoll['dates_filename'] = dates_filename_diffpoll
 
-    #preprocess_diffpoll(files_and_folders_diffpoll, pollutant_names, site)
-    #visualization_diffpoll(files_and_folders_diffpoll, pollutant_names, weekdays, site)
+    preprocess_diffpoll(files_and_folders_diffpoll, pollutant_names, site)
+    visualization_diffpoll(files_and_folders_diffpoll, pollutant_names, weekdays, site)
     model_results_diffpoll(files_and_folders_diffpoll, pollutant_names, site, num_features)
-    #r2score, mse = eval_metrics_diffpoll(files_and_folders_diffpoll, site, pollutant_names, num_features)
+    r2score, mse = eval_metrics_diffpoll(files_and_folders_diffpoll, site, pollutant_names, num_features)
+    highest_metric_per_model_diffpoll(files_and_folders_diffpoll, site, pollutant_names, num_features)
 
-    #print(mse, r2score)
-
-
+    
 main_diffpoll(data_folder = '/Users/marialiatsikou/Documents/coding practice datasets/LONDON AIR/',
       model_folder = '/Users/marialiatsikou/Documents/Code/practice/Londonair/',  site = 'Islington', num_features = 16)
