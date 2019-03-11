@@ -70,7 +70,7 @@ def norm_attrib(Xtrain, Xtest, ytrain, ytest):
 
 
 def poll_models (model_name, X, y, pickle_folder, site_name, pollutant):
-    '''Returns a Regression prediction model, actual and ﻿predicted values, indices and the model
+    '''Returns a Regression prediction model, actual and predicted values, indices 
      and saves the model in a pickle file
     Parameters:
     model_name: a string (defining which model to apply for regression), X: rank 2 array of the features' values,
@@ -117,8 +117,8 @@ def poll_models (model_name, X, y, pickle_folder, site_name, pollutant):
 def eval_metrics_diffsites (files_folders1, pollutant, site_names, num_feat):
     '''Returns r2 score and mse between predicted and target values and the corresponding plots
     Parameters:
-    files_folders1: a dictionary of files and folder names as keys and their directories as values, pollutant: string,
-    site_names: list of names (strings), num_feat : number of features of the datasets (float),
+    files_folders1: a dictionary of file and folder names as keys and their directories as values, pollutant: string,
+    site_names: list of names (strings), num_feat : number of features of the datasets (float)
     Output: 2 dictionaries with key: site name, model name and number of features and value: the corresponding metrics'''
 
     resultsfolder = files_folders1['results_folder']
@@ -157,8 +157,8 @@ def eval_metrics_diffsites (files_folders1, pollutant, site_names, num_feat):
 def eval_metrics_diffpoll (files_folders2, site, pollutant_names, num_feat):
     '''Returns r2 score and mse between predicted and target values and the  corresponding plots
     Parameters:
-    files_folders2: a dictionary of files and folder names as keys and their directories as values,
-    pollutant_names: list of names (strings), site: string, num_feat: number of features of the datasets (float),
+    files_folders2: a dictionary of file and folder names as keys and their directories as values,
+    pollutant_names: list of names (strings), site: string, num_feat: number of features of the datasets (float)
     Output: 2 dictionaries with key: pollutant name, model name and number of features and value: the corresponding metrics'''
 
     resultsfolder = files_folders2['results_folder']
@@ -197,7 +197,7 @@ def eval_metrics_diffpoll (files_folders2, site, pollutant_names, num_feat):
 def plot_metrics (files_folders, num_features, metric_per_model, model_names, site, pollutant, metric_name):
     '''plot r2 score and mse for every model as a function of the number of features
     Parameters:
-    files_folders2: a dictionary of files and folder names as keys and their directories as values,
+    files_folders: a dictionary of file and folder names as keys and their directories as values,
     num_features: a range of number of features (vector) , metric_per_model: dictionary of metric values
     with key: model name and value: list of metric values for each number of features,
     site, pollutant: strings, metric_name: kind of metric (string)'''
@@ -216,4 +216,105 @@ def plot_metrics (files_folders, num_features, metric_per_model, model_names, si
     plt.title (metric_name + ' of models predicting the values of ' + pollutant + ' in ' + site)
     plt.savefig(imgfolder + pollutant +'_' + site +'_' + metric_name +'_plot.png')
     plt.show()
+    
+   
+def highest_metric_per_model_diffsites (files_folders1, site_name, num_feat, pollutant):
+    '''prints the highest r2 and lowest mse for each model and for all sites
+    Parameters:
+    files_folders1: a dictionary of file and folder names as keys and their directories as values,
+    site_name: list of names (strings), num_feat : number of features of the datasets (float), pollutant: string'''
+
+    resultsfolder = files_folders1['results_folder']
+    model_names = ['svm', 'rf', 'lasso', 'knn']
+    features = np. arange(1, num_feat+1)
+
+    r2_per_model={}
+    mse_per_model ={}
+
+    for model_name in model_names:
+        r2_per_feat = []
+        mse_per_feat = []
+        for n_of_features in features:
+            r2_per_site = []
+            mse_per_site =[]
+            for site in site_name:
+                model_results = pd.read_csv(
+                    resultsfolder + pollutant + '_' + site + '_' + model_name + '_' + str(n_of_features) + 'feat.csv')
+                y_actual = model_results['actual_value'].values
+                y_pred = model_results['predicted_value'].values
+                temp1 = r2_score(y_actual, y_pred)
+                temp2 = mean_squared_error(y_actual, y_pred)
+                r2_per_site.append(temp1)
+                mse_per_site.append(temp2)
+            avg_r2_per_feat = np.mean(r2_per_site)
+            avg_mse_per_feat = np.mean(mse_per_site)
+            r2_per_feat.append(avg_r2_per_feat)
+            mse_per_feat.append(avg_mse_per_feat)
+
+        r2_per_model[model_name] = np.asarray(r2_per_feat)
+        mse_per_model[model_name] = np.asarray(mse_per_feat)
+
+    for model_name in model_names:
+        r2 = r2_per_model[model_name]
+        r2_max = np.max(r2)
+        print('for model', model_name,'best r2 is for features:',np.where(r2==r2_max))
+        print('highest r2 for predicting NO2 in 10 sites', model_name,'is', r2_max)
+        mse = mse_per_model[model_name]
+        mse_min = np.min(mse)
+        print('for model', model_name, 'best mse is for features:', np.where(mse == mse_min))
+        print('lowest mse for predicting NO2 in 10 sites', model_name,'is', mse_min)
+
+
+def highest_metric_per_model_diffpoll (files_folders2, site, pollutant_names, num_feat):
+    '''prints the highest r2 and lowest mse for each model and for all pollutants
+    Parameters:
+    files_folders2: a dictionary of file and folder names as keys and their directories as values,
+    site: string, pollutant_names: list of names (strings), num_feat : number of features of the datasets (float)'''
+
+    resultsfolder = files_folders2['results_folder']
+    model_names = ['svm', 'rf', 'lasso', 'knn']
+    features = np. arange(1, num_feat+1)
+
+    r2_per_model={}
+    mse_per_model ={}
+
+    for model_name in model_names:
+        r2_per_feat = []
+        mse_per_feat = []
+        for n_of_features in features:
+            r2_per_pollut = []
+            mse_per_pollut =[]
+            for name in pollutant_names:
+                model_results = pd.read_csv (resultsfolder + name +'_' + site + '_'  + model_name +'_' +str(n_of_features) +'feat.csv')
+
+                y_actual = model_results['actual_value'].values
+                y_pred = model_results['predicted_value'].values
+                temp1 = r2_score(y_actual, y_pred)
+                temp2 = mean_squared_error(y_actual, y_pred)
+                r2_per_pollut.append(temp1)
+                mse_per_pollut.append(temp2)
+            avg_r2_per_feat = np.mean(r2_per_pollut)
+            avg_mse_per_feat = np.mean(mse_per_pollut)
+            r2_per_feat.append(avg_r2_per_feat)
+            mse_per_feat.append(avg_mse_per_feat)
+
+        r2_per_model[model_name] = np.asarray(r2_per_feat)
+        mse_per_model[model_name] = np.asarray(mse_per_feat)
+
+    for model_name in model_names:
+        r2 = r2_per_model[model_name]
+        r2_max = np.max(r2)
+        print('for model', model_name,'best r2 is for features:',np.where(r2==r2_max))
+        print('highest r2 for predicting pollution in Islington with', model_name,'is', r2_max)
+        print(r2)
+        mse = mse_per_model[model_name]
+        mse_min = np.min(mse)
+        #print('for model', model_name, 'best mse is for features:', np.where(mse == mse_min))
+        #print('lowest mse for predicting pollution in Islington with', model_name,'is', mse_min)
+
+
+
+
+
+   
 
