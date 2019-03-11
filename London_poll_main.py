@@ -190,11 +190,12 @@ def main_diffsites (data_folder, model_folder, pollutant, num_features):
     files_and_folders_diffsites['values_filename'] = values_filename_diffsites
     files_and_folders_diffsites['dates_filename'] = dates_filename_diffsites
 
-    #preprocess(files_and_folders_diffsites, site_names, pollutant)
+    preprocess(files_and_folders_diffsites, site_names, pollutant)
     visualization(files_and_folders_diffsites, site_names, weekdays, pollutant)
-    #model_results(files_and_folders_diffsites, site_names, pollutant, num_features)
-    #r2score, mse = eval_metrics_diffsites(files_and_folders_diffsites, pollutant, site_names, num_features)
-    #print(mse, r2score)
+    model_results(files_and_folders_diffsites, site_names, pollutant, num_features)
+    r2score, mse = eval_metrics_diffsites(files_and_folders_diffsites, pollutant, site_names, num_features)
+    highest_metric_per_model_diffsites(files_and_folders_diffsites, site_names, num_features, pollutant)
+
 
 
 main_diffsites( data_folder = '/Users/marialiatsikou/Documents/coding practice datasets/LONDON AIR/',
