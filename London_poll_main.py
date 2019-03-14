@@ -140,7 +140,7 @@ def model_results (files_folders1, site_names, pollutant, num_of_features):
 
     '''getting results for each site, model and number of features'''
     for name in site_names:
-        r2score_max = -2
+        r2score_max = -10000
         for num_feat in range(1,num_of_features+1):
             X, y = model_dataset(poll_values[name], num_feat)
             for model_name in model_names:
