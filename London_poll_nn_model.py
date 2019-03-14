@@ -101,7 +101,7 @@ def nn_model(pickle_folder, pollutant, site_name, X, y, a, neurons, mini_batch, 
           y_train.shape, y_dev.shape, y_test.shape)
     
     counter = 0
-    r2score_dev_max = -2
+    r2score_dev_max = -10000
     for neuron in neurons:
         for batch in mini_batch:
             for learning_rate in a:
