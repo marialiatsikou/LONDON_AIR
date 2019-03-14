@@ -197,7 +197,6 @@ def main_diffsites (data_folder, model_folder, pollutant, num_features):
     highest_metric_per_model_diffsites(files_and_folders_diffsites, site_names, num_features, pollutant)
 
 
-
 main_diffsites( data_folder = '/Users/marialiatsikou/Documents/coding practice datasets/LONDON AIR/',
       model_folder = '/Users/marialiatsikou/Documents/Code/practice/Londonair/',  pollutant='NO2', num_features = 16)
 
