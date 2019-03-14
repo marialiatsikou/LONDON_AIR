@@ -143,7 +143,7 @@ def model_results_diffpoll (files_folders2, pollutant_names, site, num_of_featur
 
     '''getting results for each pollutant, model and number of features'''
     for name in pollutant_names:
-        r2score_max = -2
+        r2score_max = -10000
         for num_feat in range(1, num_of_features + 1):
             X, y = model_dataset(poll_values[name], num_feat)
             for model_name in model_names:
